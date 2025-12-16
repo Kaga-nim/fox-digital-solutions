@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cara Pesan — Fox Digital</title>
+  <meta name="description" content="Langkah mudah untuk mulai bekerja dengan Fox Digital Solutions." />
+  <link rel="icon" href="assets/favicon.png" />
+  <style>
+    /* ===== Reset & Base ===== */
+    * { box-sizing: border-box; margin:0; padding:0; }
+    :root {
+      --purple-main:#9B59FF;
+      --purple-light:#BC7CFF;
+      --purple-dark:#2B1745;
+
+      --bg:#0B0B0D;
+      --bg-light:#121218;
+      --text:#FFFFFF;
+      --muted:#B9B9C9;
+      --card:#18151F;
+
+      --max-width:1100px;
+    }
+
+    html,body {
+      height:100%;
+      font-family:"Poppins", system-ui, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+    }
+
+    .container { width:90%; max-width:var(--max-width); margin:0 auto; }
+
+    /* ===== Navbar (sticky) ===== */
+    .navbar { background:var(--purple-dark); position:sticky; top:0; z-index:999; padding:12px 0; }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .logo { color:#fff; font-weight:700; display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-links a { color:#fff; margin-left:18px; text-decoration:none; font-weight:500; }
+    .nav-links a:hover { color:var(--purple-light); }
+
+    /* ===== Hero ===== */
+    .hero {
+      padding:64px 0;
+      text-align:center;
+      background:linear-gradient(135deg, var(--bg-light), var(--purple-dark));
+    }
+    .hero h1 { font-size:2.25rem; margin-bottom:0.6rem; }
+    .lead { color:var(--muted); margin-bottom:1rem; font-size:1.05rem; max-width:760px; margin-left:auto; margin-right:auto; }
+
+    .cta-btn {
+      display:inline-block;
+      background:var(--purple-main);
+      color:#fff;
+      padding:12px 20px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:700;
+      box-shadow:0 0 12px rgba(155,89,255,0.35);
+      transition:.3s;
+    }
+    .cta-btn:hover {
+      background:var(--purple-light);
+      box-shadow:0 0 18px rgba(155,89,255,0.55);
+    }
+
+    /* Hero kecil untuk halaman lain */
+    .hero-small {
+      padding:50px 0;
+      background:linear-gradient(135deg, var(--bg-light), var(--purple-dark));
+      text-align:center;
+    }
+
+    /* ===== Sections ===== */
+    .section { padding:56px 0; }
+    .section.alt { background:var(--bg-light); }
+    .section-title {
+      text-align:center;
+      font-size:1.6rem;
+      margin-bottom:22px;
+      color:var(--purple-main);
+      font-weight:700;
+    }
+
+    /* ===== Grid & Cards ===== */
+    .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:20px; }
+    .card {
+      background:var(--card);
+      padding:18px;
+      border-radius:10px;
+      border:1px solid rgba(155,89,255,0.18);
+      box-shadow:0 0 25px rgba(155,89,255,0.07);
+    }
+    .card h3 { margin-bottom:6px; }
+    .link { display:inline-block; margin-top:10px; color:var(--purple-main); text-decoration:none; font-weight:600; }
+    .link:hover { color:var(--purple-light); }
+
+    /* Why cards */
+    .why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:18px; margin-top:18px; }
+    .why-card {
+      background:var(--card);
+      padding:16px;
+      border-radius:8px;
+      text-align:center;
+      border:1px solid rgba(155,89,255,0.18);
+    }
+
+    /* ===== Services (halaman layanan) ===== */
+    .service {
+      background:var(--card);
+      padding:22px;
+      border-radius:10px;
+      margin-bottom:24px;
+      border:1px solid rgba(155,89,255,0.18);
+      box-shadow:0 0 20px rgba(155,89,255,0.06);
+    }
+    .service h2 { color:var(--purple-light); margin-bottom:10px; }
+
+    /* ===== Contact & CTAs ===== */
+    .contact-cta .cta-row { display:flex; gap:12px; justify-content:center; margin-top:12px; flex-wrap:wrap; }
+    .wa-btn {
+      background:#25d366;
+      color:white;
+      padding:10px 16px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .btn-outline {
+      border:2px solid var(--purple-main);
+      color:var(--purple-main);
+      padding:10px 16px;
+      border-radius:8px;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .btn-outline:hover {
+      background:var(--purple-main);
+      color:#fff;
+    }
+
+    /* ===== Forms ===== */
+    .contact-form { max-width:600px; margin:18px auto 0; display:flex; flex-direction:column; gap:10px; }
+    .contact-form input, .contact-form select, .contact-form textarea {
+      padding:12px;
+      border-radius:8px;
+      border:1px solid rgba(155,89,255,0.22);
+      background:var(--bg-light);
+      color:var(--text);
+      font-size:1rem;
+    }
+    .contact-form button {
+      background:var(--purple-main);
+      color:#fff;
+      padding:12px;
+      border-radius:8px;
+      border:none;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .contact-form button:hover { background:var(--purple-light); }
+
+    /* ===== Steps / FAQ ===== */
+    .steps { 
+      max-width:700px; 
+      margin:0 auto; 
+      font-size:1.1rem; 
+      line-height:1.6;
+      padding-left:24px; 
+      margin-bottom: 30px;
+    }
+    .steps li { 
+      margin-bottom: 12px; 
+      padding-left: 8px;
+    }
+    details { 
+      max-width: 700px; 
+      margin: 15px auto; 
+      background: var(--card); 
+      padding: 15px; 
+      border-radius: 8px;
+      border: 1px solid rgba(155,89,255,0.18);
+    }
+    details summary { 
+      cursor:pointer; 
+      font-weight:600; 
+      margin: 0 0 10px 0;
+      color: var(--purple-light);
+    }
+    details p { 
+      margin: 10px 0 0 0; 
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background:var(--purple-dark);
+      color:#fff;
+      text-align:center;
+      padding:18px 0;
+      margin-top:30px;
+    }
+
+    /* ===== Animation on scroll ===== */
+    .card, .why-card, .service, .section-title {
+      opacity:0;
+      transform:translateY(20px);
+      transition:.5s ease;
+    }
+    .visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width:768px){
+      .nav-links { display:none; }
+      .hero h1 { font-size:1.6rem; }
+      .lead { padding:0 12px; }
+    }
+
+    .hero {
+      padding:230px 0;
+      text-align:center;
+      background:
+        linear-gradient(135deg, rgba(11,11,13,0.85), rgba(43,23,69,0.85)),
+        url("assets/favicon.png") center/cover no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 65vh;
+        background-position: top;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/favicon.png" alt="Logo Fox Digital" width="28" height="28">
+        <span>Fox Digital</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="layanan.html">Layanan</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="carapemesanan.html">Cara Pesan</a>
+        <a href="kontak.html">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="section hero-small">
+      <div class="container">
+        <h1 class="section-title">Cara Pemesanan</h1>
+        <p class="lead">Langkah mudah untuk mulai bekerja dengan kami.</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <h3 style="text-align: center; margin-bottom: 20px; color: var(--purple-light);">Langkah-langkah Pemesanan</h3>
+        <ol class="steps">
+          <li><strong>Pilih layanan</strong> di halaman Layanan sesuai kebutuhan Anda.</li>
+          <li><strong>Hubungi kami</strong> melalui form di halaman Kontak atau chat WhatsApp langsung.</li>
+          <li><strong>Konfirmasi & DP</strong> - Kami akan konfirmasi pesanan dan mulai pengerjaan setelah pembayaran DP (opsional untuk beberapa layanan).</li>
+          <li><strong>Proses pengerjaan & revisi</strong> sesuai dengan paket yang dipilih hingga hasil final disetujui.</li>
+          <li><strong>Pembayaran sisa & pengiriman</strong> - Setelah revisi selesai, selesaikan pembayaran dan kami kirimkan file final.</li>
+        </ol>
+
+        <h3 style="text-align: center; margin: 40px 0 20px; color: var(--purple-main);">FAQ Singkat</h3>
+        <details>
+          <summary>Berapa lama waktu pengerjaan?</summary>
+          <p>Estimasi berbeda per layanan — rata-rata 2–5 hari kerja untuk layanan standar. Pitch Deck sederhana bisa selesai dalam 2-3 hari, sedangkan proposal bisnis lengkap membutuhkan 4-5 hari kerja.</p>
+        </details>
+        
+        <details>
+          <summary>Bagaimana cara pembayaran?</summary>
+          <p>Kami menerima pembayaran melalui transfer bank (BCA, BRI, Mandiri) atau e-wallet (OVO, Dana, Gopay). DP 50% di awal pengerjaan, sisanya setelah revisi selesai.</p>
+        </details>
+        
+        <details>
+          <summary>Apakah ada revisi?</summary>
+          <p>Ya, setiap paket sudah termasuk jumlah revisi tertentu (biasanya 2-3x revisi minor). Revisi besar atau perubahan mendasar mungkin dikenakan biaya tambahan.</p>
+        </details>
+        
+        <details>
+          <summary>Bisa untuk keperluan skripsi/sidang?</summary>
+          <p>Tentu! Kami sudah berpengalaman membantu mahasiswa membuat proposal bisnis untuk skripsi dan sidang. Hasil kami sesuaikan dengan format dan standar akademik.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Fox Digital Solutions</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+
+</body>
+</html>

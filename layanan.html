@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fox Digital — Layanan</title>
+  <meta name="description" content="Layanan lengkap: Proposal bisnis, Pitch Deck, Konsultasi, Paket Bundling untuk mahasiswa dan UMKM." />
+  <link rel="icon" href="assets/favicon.png" />
+  <style>
+    /* ===== Reset & Base ===== */
+    * { box-sizing: border-box; margin:0; padding:0; }
+    :root {
+      --purple-main:#9B59FF;
+      --purple-light:#BC7CFF;
+      --purple-dark:#2B1745;
+
+      --bg:#0B0B0D;
+      --bg-light:#121218;
+      --text:#FFFFFF;
+      --muted:#B9B9C9;
+      --card:#18151F;
+
+      --max-width:1100px;
+    }
+
+    html,body {
+      height:100%;
+      font-family:"Poppins", system-ui, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+    }
+
+    .container { width:90%; max-width:var(--max-width); margin:0 auto; }
+
+    /* ===== Navbar (sticky) ===== */
+    .navbar { background:var(--purple-dark); position:sticky; top:0; z-index:999; padding:12px 0; }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .logo { color:#fff; font-weight:700; display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-links a { color:#fff; margin-left:18px; text-decoration:none; font-weight:500; }
+    .nav-links a:hover { color:var(--purple-light); }
+    
+    /* ===== Hero ===== */
+    .hero-small {
+      padding:100px 0 70px;
+      background: linear-gradient(135deg, 
+        rgba(11, 11, 13, 0.9) 0%, 
+        rgba(43, 23, 69, 0.9) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%232B1745"/><circle cx="50" cy="50" r="1" fill="%239B59FF" opacity="0.3"/><circle cx="30" cy="30" r="0.5" fill="%23BC7CFF" opacity="0.2"/><circle cx="70" cy="70" r="0.7" fill="%239B59FF" opacity="0.2"/></svg>');
+      text-align:center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-small::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(155, 89, 255, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(188, 124, 255, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .section-title {
+      text-align:center;
+      font-size:2.2rem;
+      margin-bottom:15px;
+      color:var(--purple-main);
+      font-weight:700;
+      position: relative;
+      display: inline-block;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--purple-main), transparent);
+      border-radius: 2px;
+    }
+    
+    .lead {
+      color:var(--muted);
+      margin:20px auto 0;
+      font-size:1.1rem;
+      max-width:700px;
+      line-height:1.8;
+    }
+
+    /* ===== Sections ===== */
+    .section { 
+      padding:70px 0;
+      position: relative;
+    }
+    .section.alt { 
+      background:var(--bg-light);
+    }
+
+    /* ===== Services ===== */
+    .services-intro {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 50px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+    
+    .service {
+      background: var(--card);
+      padding: 35px;
+      border-radius: 16px;
+      margin-bottom: 35px;
+      border: 1px solid rgba(155,89,255,0.25);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .service::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--purple-main), var(--purple-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    
+    .service:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .service:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(155, 89, 255, 0.15);
+      border-color: rgba(155, 89, 255, 0.4);
+    }
+    
+    .service h2 { 
+      color:var(--text); 
+      margin-bottom:20px;
+      font-size: 1.8rem;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+    
+    .service h2::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 60px;
+      height: 2px;
+      background: var(--purple-main);
+    }
+    
+    .service p {
+      margin-bottom: 20px;
+      line-height: 1.7;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+    
+    .service ul {
+      margin: 20px 0;
+      padding-left: 25px;
+    }
+    
+    .service li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+      color: var(--muted);
+      position: relative;
+      padding-left: 10px;
+    }
+    
+    .service li::before {
+      content: '✓';
+      color: var(--purple-main);
+      font-weight: bold;
+      position: absolute;
+      left: -20px;
+    }
+    
+    .service-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      display: inline-block;
+      background: linear-gradient(135deg, var(--purple-main), var(--purple-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Service highlight */
+    .service-highlight {
+      background: linear-gradient(145deg, rgba(43, 23, 69, 0.3), rgba(155, 89, 255, 0.1));
+      border: 2px solid rgba(155, 89, 255, 0.4);
+      position: relative;
+    }
+    
+    .service-highlight::after {
+      content: '🔥 POPULER';
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, var(--purple-main), var(--purple-light));
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* Deliverables box */
+    .deliverables {
+      background: rgba(0, 0, 0, 0.25);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 25px 0;
+      border-left: 4px solid var(--purple-main);
+    }
+    
+    .deliverables h4 {
+      color: var(--purple-light);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+    
+    .deliverables ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    
+    .deliverables li {
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    /* Pricing section */
+    .pricing {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .price-tag {
+      background: linear-gradient(135deg, rgba(155, 89, 255, 0.2), rgba(43, 23, 69, 0.3));
+      color: var(--purple-light);
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      border: 1px solid rgba(155, 89, 255, 0.3);
+    }
+    
+    .service-cta {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--purple-main), var(--purple-light));
+      color: white;
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(155, 89, 255, 0.3);
+    }
+    
+    .service-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(155, 89, 255, 0.4);
+      background: linear-gradient(135deg, var(--purple-light), var(--purple-main));
+    }
+
+    /* ===== Contact CTA ===== */
+    .contact-cta {
+      text-align: center;
+      margin-top: 60px;
+      padding: 40px;
+      background: linear-gradient(135deg, rgba(43, 23, 69, 0.5), rgba(11, 11, 13, 0.8));
+      border-radius: 16px;
+      border: 1px solid rgba(155, 89, 255, 0.3);
+    }
+    
+    .contact-cta h3 {
+      color: var(--text);
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+    
+    .contact-cta p {
+      color: var(--muted);
+      margin-bottom: 25px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .cta-row {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .wa-btn {
+      background: linear-gradient(135deg, #25d366, #1da851);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    }
+    
+    .wa-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+      background: linear-gradient(135deg, #1da851, #25d366);
+    }
+    
+    .btn-outline {
+      border: 2px solid var(--purple-main);
+      color: var(--purple-main);
+      padding: 12px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-outline:hover {
+      background: var(--purple-main);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      background: var(--purple-dark);
+      color: #fff;
+      text-align: center;
+      padding: 25px 0;
+      margin-top: 50px;
+      border-top: 1px solid rgba(155, 89, 255, 0.2);
+    }
+    
+    .footer p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ===== Animations ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .service, .contact-cta {
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .service:nth-child(1) { animation-delay: 0.1s; }
+    .service:nth-child(2) { animation-delay: 0.2s; }
+    .service:nth-child(3) { animation-delay: 0.3s; }
+    .service:nth-child(4) { animation-delay: 0.4s; }
+    .contact-cta { animation-delay: 0.5s; }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .nav-links { 
+        display: none; 
+      }
+      
+      .hero-small {
+        padding: 80px 0 50px;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+        padding: 0 15px;
+      }
+      
+      .service {
+        padding: 25px;
+        margin-bottom: 25px;
+      }
+      
+      .service h2 {
+        font-size: 1.5rem;
+      }
+      
+      .pricing {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+      }
+      
+      .price-tag {
+        text-align: center;
+      }
+      
+      .service-cta {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .cta-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .wa-btn, .btn-outline {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+      }
+      
+      .service-highlight::after {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+        top: 10px;
+        right: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .service {
+        padding: 20px;
+      }
+      
+      .service-icon {
+        font-size: 2rem;
+      }
+      
+      .deliverables {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/favicon.png" alt="Logo Fox Digital" width="28" height="28">
+        <span>Fox Digital</span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="layanan.html">Layanan</a>
+        <a href="tentang.html">Tentang</a>
+        <a href="carapemesanan.html">Cara Pesan</a>
+        <a href="kontak.html">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <header class="hero-small">
+      <div class="container">
+        <h1 class="section-title">Layanan Kami</h1>
+        <p class="lead">Rincian layanan lengkap dengan deliverable jelas dan estimasi waktu pengerjaan. Kami siap membantu kebutuhan bisnis Anda dengan solusi profesional.</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <div class="services-intro">
+          <p>Kami menyediakan layanan lengkap untuk membantu Anda menyusun dokumen bisnis yang profesional, dari proposal untuk sidang akademik hingga pitch deck untuk menarik investor. Setiap layanan disesuaikan dengan kebutuhan spesifik Anda dengan pendekatan personal.</p>
+        </div>
+        
+        <article id="proposal" class="service">
+          <div class="service-icon">📋</div>
+          <h2>Proposal Bisnis</h2>
+          <p>Solusi lengkap untuk menyusun proposal bisnis yang terstruktur dan profesional, ideal untuk keperluan akademik (skripsi, tesis) maupun pengajuan dana kepada investor atau lembaga pendanaan.</p>
+          
+          <div class="deliverables">
+            <h4>Yang termasuk dalam paket:</h4>
+            <ul>
+              <li>Ringkasan eksekutif yang menarik perhatian</li>
+              <li>Analisis pasar dan kompetitor mendalam</li>
+              <li>Model bisnis yang jelas dan sustainable</li>
+              <li>Proyeksi keuangan 3 tahun dengan asumsi realistis</li>
+              <li>Rencana operasional dan marketing strategis</li>
+              <li>Strategi implementasi bertahap</li>
+              <li>Analisis risiko dan mitigasi</li>
+            </ul>
+          </div>
+          
+          <ul>
+            <li><strong>Waktu pengerjaan:</strong> 3–5 hari kerja</li>
+            <li><strong>Revisi:</strong> 2 kali revisi minor (konten dan format)</li>
+            <li><strong>Format file:</strong> PDF final + DOCX editable</li>
+            <li><strong>Konsultasi awal:</strong> Gratis 30 menit</li>
+          </ul>
+          
+          <div class="pricing">
+            <div class="price-tag">Mulai dari Rp 350.000</div>
+            <a href="kontak.html" class="service-cta">Pesan Sekarang</a>
+          </div>
+        </article>
+
+        <article id="pitchdeck" class="service">
+          <div class="service-icon">📊</div>
+          <h2>Pitch Deck</h2>
+          <p>Presentasi visual yang powerful untuk pitching ke investor, kompetisi bisnis, atau presentasi internal. Desain modern dengan storytelling yang efektif untuk memikat audiens Anda.</p>
+          
+          <div class="deliverables">
+            <h4>Struktur slide lengkap (10-15 slide):</h4>
+            <ul>
+              <li>Cover & Problem Statement yang compelling</li>
+              <li>Solution & Unique Value Proposition</li>
+              <li>Market Size & Opportunity (TAM, SAM, SOM)</li>
+              <li>Business Model & Revenue Streams</li>
+              <li>Traction & Milestones Achieved</li>
+              <li>Team & Advisors (jika ada)</li>
+              <li>Financial Projection & Key Metrics</li>
+              <li>Ask & Use of Funds</li>
+              <li>Roadmap & Next Steps</li>
+            </ul>
+          </div>
+          
+          <ul>
+            <li><strong>Waktu pengerjaan:</strong> 2–4 hari kerja</li>
+            <li><strong>Revisi:</strong> 2 kali revisi desain & konten</li>
+            <li><strong>Format:</strong> PPTX + PDF + Google Slides</li>
+            <li><strong>Bonus:</strong> Tips presentasi efektif</li>
+          </ul>
+          
+          <div class="pricing">
+            <div class="price-tag">Mulai dari Rp 300.000</div>
+            <a href="kontak.html" class="service-cta">Pesan Sekarang</a>
+          </div>
+        </article>
+
+        <article id="konsultasi" class="service">
+          <div class="service-icon">💡</div>
+          <h2>Konsultasi Ide Bisnis</h2>
+          <p>Sesi brainstorming dan validasi ide bisnis Anda dengan tim ahli kami. Cocok untuk entrepreneur yang masih merancang konsep atau ingin mengembangkan model bisnis yang ada ke level berikutnya.</p>
+          
+          <div class="deliverables">
+            <h4>Hasil yang akan Anda dapatkan:</h4>
+            <ul>
+              <li>Validasi ide dan market fit analysis</li>
+              <li>Saran monetisasi dan revenue stream potensial</li>
+              <li>Analisis SWOT bisnis Anda secara komprehensif</li>
+              <li>Rekomendasi strategi pemasaran efektif</li>
+              <li>Roadmap pengembangan jangka pendek & panjang</li>
+              <li>Competitive analysis & positioning strategy</li>
+              <li>Actionable next steps yang bisa langsung diimplementasi</li>
+            </ul>
+          </div>
+          
+          <ul>
+            <li><strong>Durasi:</strong> 60-90 menit per sesi (intensif)</li>
+            <li><strong>Media:</strong> Google Meet / Zoom (rekaman tersedia)</li>
+            <li><strong>Output:</strong> Rekaman + summary poin penting + action plan</li>
+            <li><strong>Follow-up:</strong> 1x email support selama 7 hari</li>
+          </ul>
+          
+          <div class="pricing">
+            <div class="price-tag">Rp 150.000 / sesi</div>
+            <a href="kontak.html" class="service-cta">Jadwalkan Konsultasi</a>
+          </div>
+        </article>
+
+        <article id="paket" class="service service-highlight">
+          <div class="service-icon">🎁</div>
+          <h2>Paket Bundling Hemat</h2>
+          <p>Gabungan proposal + pitch deck + 1 sesi konsultasi — solusi komprehensif dengan harga spesial. Hemat hingga 20% dibanding pesan terpisah! Ideal untuk startup dan UMKM yang ingin launching dengan persiapan matang.</p>
+          
+          <div class="deliverables">
+            <h4>Keuntungan paket bundling:</h4>
+            <ul>
+              <li>Konsistensi konten antara proposal dan pitch deck</li>
+              <li>Sinkronisasi data dan analisis secara menyeluruh</li>
+              <li>Proses pengerjaan lebih cepat dengan single point of contact</li>
+              <li>Diskon khusus untuk paket lengkap</li>
+              <li>Prioritas revisi dan support 24/7</li>
+              <li>Garansi kepuasan 100%</li>
+            </ul>
+          </div>
+          
+          <ul>
+            <li><strong>Waktu pengerjaan:</strong> 5-7 hari kerja</li>
+            <li><strong>Revisi:</strong> 3 kali untuk setiap dokumen</li>
+            <li><strong>Bonus eksklusif:</strong> Template email pitching ke investor + LinkedIn optimization tips</li>
+            <li><strong>Support:</strong> 30 hari after-sales support</li>
+          </ul>
+          
+          <div class="pricing">
+            <div class="price-tag">Rp 650.000 (Hemat Rp 150.000)</div>
+            <a href="kontak.html" class="service-cta">Pilih Paket Hemat</a>
+          </div>
+        </article>
+        
+        <div class="contact-cta">
+          <h3>Masih ragu? Konsultasi gratis dulu!</h3>
+          <p>Kami paham setiap bisnis unik. Mari diskusikan kebutuhan spesifik Anda tanpa biaya apapun. Kami akan rekomendasikan solusi terbaik untuk kesuksesan Anda.</p>
+          <div class="cta-row">
+            <a class="wa-btn" href="https://wa.me/6281235484982" target="_blank">
+              <span>💬</span> Chat via WhatsApp
+            </a>
+            <a href="kontak.html" class="btn-outline">
+              Isi Form Konsultasi
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Fox Digital Solutions — Spesialis Proposal Bisnis & Pitch Deck</p>
+    </div>
+  </footer>
+
+  <script>
+    // Animasi fade-in saat scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      }, observerOptions);
+      
+      // Observe semua service cards
+      document.querySelectorAll('.service, .contact-cta').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
